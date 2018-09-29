@@ -1,10 +1,15 @@
 #+STARTUP: indent
+* system setting
+** set default system encoding
+#+BEGIN_SRC emacs-lisp
+  (set-default-coding-systems 'utf-8)
+#+END_SRC
 * package manipulate
 ** package initialize
 #+BEGIN_SRC emacs-lisp
   (package-initialize)
 #+END_SRC
-** packge list
+** package list
 #+BEGIN_SRC emacs-lisp
   (setq package-list '(
                        helm
@@ -22,6 +27,7 @@
   (setq package-archives '(
                            ("gnu" . "http://elpa.gnu.org/packages/")
                            ("melpa" . "https://melpa.org/packages/")
+                           ("org" . "https://orgmode.org/elpa")
                            ))
 #+END_SRC
 ** package auto install from list
@@ -62,9 +68,9 @@
 #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
-  (org-babel-do-load-languages
+  (add-to-list
    'org-babel-load-languages
-   '((dot . t)))
+   '(dot . t))
 
   (setq org-default-notes-file (concat org-directory "/notes.org"))
 #+END_SRC
