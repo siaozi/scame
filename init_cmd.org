@@ -39,7 +39,7 @@
   ; install the missing packages
   (dolist (package package-list)
     (unless (package-installed-p package)
-          (package-install package)))
+      (package-install package)))
 #+END_SRC
 * emacs setting
 ** helm
