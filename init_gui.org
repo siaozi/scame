@@ -6,26 +6,26 @@
     "The font name of English.")
   (defvar emacs-cjk-font "Hiragino Sans GB W3"
     "The font name for CJK.")
-  (defvar emacs-font-size-pair '(18 . 18)
-    "Default font size pair for (english . chinese)")
+  (defvar emacs-font-size 18
+    "Default font size")
   (defun font-exist-p (fontname)
     "Test if this font is exist or not."
     (if (or (not fontname) (string= fontname ""))
         nil
       (if (not (x-list-fonts fontname)) nil t)))
-  (defun set-font (english chinese size-pair)
+  (defun set-font (english chinese size)
     "Setup emacs English and Chinese font on x window-system."
     (if (font-exist-p english)
-        (set-frame-font (format "%s:pixelsize=%d" english (car size-pair)) t))
+        (set-frame-font (format "%s:pixelsize=%d" english size) t))
     (if (font-exist-p chinese)
         (dolist (charset '(kana han symbol cjk-misc bopomofo))
           (set-fontset-font (frame-parameter nil 'font) charset
-                            (font-spec :family chinese :size (cdr size-pair))))))
+                            (font-spec :family chinese :size size)))))
   (defun emacs-step-font-size (step)
     "Increase/Decrease emacs's font size."
-    (setq emacs-font-size-pair (+ emacs-font-size-pair step))
-    (message "frame size adjust to %d pixel" (emacs-font-size-pair))
-    (set-font emacs-english-font emacs-cjk-font emacs-font-size-pair)
+    (setq emacs-font-size (+ emacs-font-size step))
+    (message "frame font size adjust to %d pixel" emacs-font-size)
+    (set-font emacs-english-font emacs-cjk-font emacs-font-size)
     )
   (defun increase-emacs-font-size ()
     "Decrease emacs's font-size acording emacs-font-size-pair-list."
