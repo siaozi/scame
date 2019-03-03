@@ -20,6 +20,8 @@
                        magit
 
                        org
+
+                       google-translate
                        ))
 #+END_SRC
 ** package archives
@@ -73,4 +75,12 @@
    '(dot . t))
 
   (setq org-default-notes-file (concat org-directory "/notes.org"))
+#+END_SRC
+** google-translate
+#+BEGIN_SRC emacs-lisp
+  (require 'google-translate)
+  (require 'google-translate-smooth-ui)
+  (global-set-key "\C-ct" 'google-translate-smooth-translate)
+  (setq google-translate-translation-directions-alist
+        '(("en" . "zh-TW") ("zh-TW" . "en")))
 #+END_SRC

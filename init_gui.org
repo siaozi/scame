@@ -28,10 +28,10 @@
     (set-font emacs-english-font emacs-cjk-font emacs-font-size)
     )
   (defun increase-emacs-font-size ()
-    "Decrease emacs's font-size acording emacs-font-size-pair-list."
+    "Decrease emacs's font-size acording emacs-font-size."
     (interactive) (emacs-step-font-size 1))
   (defun decrease-emacs-font-size ()
-    "Increase emacs's font-size acording emacs-font-size-pair-list."
+    "Increase emacs's font-size acording emacs-font-size."
     (interactive) (emacs-step-font-size -1))
   (global-set-key (kbd "C-=") 'increase-emacs-font-size)
   (global-set-key (kbd "C--") 'decrease-emacs-font-size)
@@ -41,7 +41,7 @@
 #+BEGIN_SRC emacs-lisp
   (setq package-list '(
                        emms
-
+                       emms-player-mpv
                        ))
 #+END_SRC
 * emacs setting
@@ -50,3 +50,11 @@
   (load-theme 'tango-dark)
 #+END_SRC
 ** emms
+#+BEGIN_SRC emacs-lisp
+  (require 'emms-setup)
+  (emms-minimalistic)
+  (emms-default-players)
+  (require 'emms-player-mpv)
+  (add-to-list 'emms-player-list 'emms-player-mpv)
+  (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
+#+END_SRC
