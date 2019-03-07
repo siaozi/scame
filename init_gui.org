@@ -62,6 +62,7 @@
 #+BEGIN_SRC emacs-lisp
   (require 'emms-setup)
   (emms-minimalistic)
+  (emms-all)
   (emms-default-players)
   (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
 #+END_SRC
