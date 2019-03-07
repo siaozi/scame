@@ -41,6 +41,18 @@
 #+BEGIN_SRC emacs-lisp
   (setq package-list (append package-list '(emms)))
 #+END_SRC
+** package auto install from list
+#+BEGIN_SRC emacs-lisp
+  ; fetch the list of packages available
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  ; install the missing packages
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package)))
+#+END_SRC
+
 * emacs setting
 ** theme
 #+BEGIN_SRC emacs-lisp
