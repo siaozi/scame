@@ -11,18 +11,19 @@
 #+END_SRC
 ** package list
 #+BEGIN_SRC emacs-lisp
-  (setq package-list '(
-                       helm
-                       helm-swoop
+  (setq package-list nil)
+  (setq package-list (append package-list '(
+                                            helm
+                                            helm-swoop
+                                            
+                                            ace-window
+                                            
+                                            magit
 
-                       ace-window
-
-                       magit
-
-                       org
-
-                       google-translate
-                       ))
+                                            org
+                                            
+                                            google-translate
+                                            )))
 #+END_SRC
 ** package archives
 #+BEGIN_SRC emacs-lisp
