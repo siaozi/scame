@@ -39,7 +39,7 @@
 * package manipulate
 ** package list
 #+BEGIN_SRC emacs-lisp
-  (setq package-list (append package-list '(emms)))
+  (setq package-list (append package-list '(emms exwm)))
 #+END_SRC
 ** package auto install from list
 #+BEGIN_SRC emacs-lisp
@@ -65,4 +65,10 @@
   (emms-all)
   (emms-default-players)
   (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
+#+END_SRC
+** exwm
+#+BEGIN_SRC emacs-lisp
+  (require 'exwm)
+  (require 'exwm-config)
+  (exwm-config-default)
 #+END_SRC
