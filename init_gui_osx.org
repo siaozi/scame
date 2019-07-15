@@ -1,0 +1,68 @@
+#+STARTUP: indent
+* system setting
+** font size adjust
+#+BEGIN_SRC emacs-lisp
+  (defvar emacs-english-font "Inconsolata"
+    "The font name of English.")
+  (defvar emacs-cjk-font "Hiragino Sans GB W3"
+    "The font name for CJK.")
+  (defvar emacs-font-size 18
+    "Default font size")
+  (defun font-exist-p (fontname)
+    "Test if this font is exist or not."
+    (if (or (not fontname) (string= fontname ""))
+        nil
+      (if (not (x-list-fonts fontname)) nil t)))
+  (defun set-font (english chinese size)
+    "Setup emacs English and Chinese font on x window-system."
+    (if (font-exist-p english)
+        (set-frame-font (format "%s:pixelsize=%d" english size) t))
+    (if (font-exist-p chinese)
+        (dolist (charset '(kana han symbol cjk-misc bopomofo))
+          (set-fontset-font (frame-parameter nil 'font) charset
+                            (font-spec :family chinese :size size)))))
+  (defun emacs-step-font-size (step)
+    "Increase/Decrease emacs's font size."
+    (setq emacs-font-size (+ emacs-font-size step))
+    (message "frame font size adjust to %d pixel" emacs-font-size)
+    (set-font emacs-english-font emacs-cjk-font emacs-font-size)
+    )
+  (defun increase-emacs-font-size ()
+    "Decrease emacs's font-size acording emacs-font-size."
+    (interactive) (emacs-step-font-size 1))
+  (defun decrease-emacs-font-size ()
+    "Increase emacs's font-size acording emacs-font-size."
+    (interactive) (emacs-step-font-size -1))
+  (global-set-key (kbd "C-=") 'increase-emacs-font-size)
+  (global-set-key (kbd "C--") 'decrease-emacs-font-size)
+#+END_SRC
+* package manipulate
+** package list
+#+BEGIN_SRC emacs-lisp
+  (setq package-list (append package-list '(emms)))
+#+END_SRC
+** package auto install from list
+#+BEGIN_SRC emacs-lisp
+  ; fetch the list of packages available
+  (unless package-archive-contents
+    (package-refresh-contents))
+
+  ; install the missing packages
+  (dolist (package package-list)
+    (unless (package-installed-p package)
+      (package-install package)))
+#+END_SRC
+
+* emacs setting
+** theme
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'tango-dark)
+#+END_SRC
+** emms
+#+BEGIN_SRC emacs-lisp
+  (require 'emms-setup)
+  (emms-minimalistic)
+  (emms-all)
+  (emms-default-players)
+  (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
+#+END_SRC
