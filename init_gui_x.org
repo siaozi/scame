@@ -65,6 +65,7 @@
   (emms-all)
   (emms-default-players)
   (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
+  (setq emms-player-list '(emms-player-mpv))
 #+END_SRC
 ** exwm
 #+BEGIN_SRC emacs-lisp

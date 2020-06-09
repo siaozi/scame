@@ -6,7 +6,7 @@
     "The font name of English.")
   (defvar emacs-cjk-font "Hiragino Sans GB W3"
     "The font name for CJK.")
-  (defvar emacs-font-size 18
+  (defvar emacs-font-size 16
     "Default font size")
   (defun font-exist-p (fontname)
     "Test if this font is exist or not."
@@ -29,17 +29,24 @@
     )
   (defun increase-emacs-font-size ()
     "Decrease emacs's font-size acording emacs-font-size."
-    (interactive) (emacs-step-font-size 1))
+    (interactive) (emacs-step-font-size 2))
   (defun decrease-emacs-font-size ()
     "Increase emacs's font-size acording emacs-font-size."
-    (interactive) (emacs-step-font-size -1))
+    (interactive) (emacs-step-font-size -2))
   (global-set-key (kbd "C-=") 'increase-emacs-font-size)
   (global-set-key (kbd "C--") 'decrease-emacs-font-size)
+
+  (increase-emacs-font-size)
 #+END_SRC
 * package manipulate
 ** package list
 #+BEGIN_SRC emacs-lisp
-  (setq package-list (append package-list '(emms)))
+  (setq package-list (append package-list '(
+                                            emms
+                                            sunshine
+                                            monokai-theme
+                                            )))
+  (setq package-selected-packages 'package-list)
 #+END_SRC
 ** package auto install from list
 #+BEGIN_SRC emacs-lisp
@@ -56,7 +63,7 @@
 * emacs setting
 ** theme
 #+BEGIN_SRC emacs-lisp
-  (load-theme 'tango-dark)
+  (load-theme 'monokai t)  
 #+END_SRC
 ** emms
 #+BEGIN_SRC emacs-lisp
@@ -65,4 +72,21 @@
   (emms-all)
   (emms-default-players)
   (setq emms-player-mpv-parameters '("--quiet" "--really-quiet" "--no-video"))
+  (setq emms-player-list '(emms-player-mpv))
+#+END_SRC
+** google-translate
+#+BEGIN_SRC emacs-lisp
+  (setq google-translate-listen-program "mpv")
+#+END_SRC
+** face
+#+BEGIN_SRC emacs-lisp
+  (toggle-frame-fullscreen)
+#+END_SRC
+** weather
+#+BEGIN_SRC emacs-lisp
+  (require 'sunshine)
+  (setq sunshine-appid "dabf41edecdaffb2b71f80750282dc57")
+  (setq sunshine-location "Guizikeng, TW")
+  (setq sunshine-show-icons t)
+  (setq sunshine-units 'metric)
 #+END_SRC
