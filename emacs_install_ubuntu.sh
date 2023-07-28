@@ -11,4 +11,4 @@ sudo git clone https://github.com/siaozi/scame
 mkdir ~/.local/share/fonts/
 cp ~/.emacs.d/scame/fontPack/* ~/.local/share/fonts/
 fc-cache -f -v
-cp ~/.emacs.d/scame/init.org ~/.emacs.d/
+cp ~/.emacs.d/scame/init.* ~/.emacs.d/
