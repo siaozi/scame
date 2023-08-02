@@ -9,6 +9,6 @@ mkdir ~/.emacs.d/
 cd ~/.emacs.d/
 
 mkdir ~/.local/share/fonts/
-cp ~/.emacs.d/scame/fontPack/* ~/.local/share/fonts/
+cp ~/scame/fontPack/* ~/.local/share/fonts/
 fc-cache -f -v
-cp ~/.emacs.d/scame/init.* ~/.emacs.d/
+cp ~/scame/init.* ~/.emacs.d/
