@@ -6,7 +6,6 @@ sudo chmod a+rx /usr/local/bin/youtube-dl
 
 mkdir ~/.emacs.d/
 cd ~/.emacs.d/
-sudo git clone https://github.com/siaozi/scame
 
 mkdir ~/.local/share/fonts/
 cp ~/.emacs.d/scame/fontPack/* ~/.local/share/fonts/
