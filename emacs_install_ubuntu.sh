@@ -1,3 +1,4 @@
+sudo apt-get update
 sudo apt-get install emacs
 sudo apt-get install graphviz mpv ruby git
 sudo gem install taskjuggler
